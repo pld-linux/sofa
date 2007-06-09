@@ -1,0 +1,19 @@
+diff -ur sofa-0.2.2-o/src/Makefile.am sofa-0.2.2/src/Makefile.am
+--- sofa-0.2.2-o/src/Makefile.am	2007-06-06 10:17:15.000000000 -0600
++++ sofa-0.2.2/src/Makefile.am	2007-06-09 11:54:37.000000000 -0600
+@@ -31,13 +31,13 @@
+                sofa-i18n.h \
+                debug.h debug.cpp
+                
+-libsofa_la_LIBADD = @LIBLTDL@ 
++libsofa_la_LIBADD = @LIBLTDL@ $(DEPS_LIBS)
+ 
+ 
+ bin_PROGRAMS = sofa
+ sofa_SOURCES = sofa.cpp modules/modulemanager.cpp modules/modulemanager.h 
+                
+-sofa_LDADD = @LIBLTDL@ $(DEPS_LIBS) libsofa.la
++sofa_LDADD = @LIBLTDL@ libsofa.la $(DEPS_LIBS) 
+ AM_CPPFLAGS = $(DEPS_CFLAGS) \
+               -DPIXMAPS_DIR=\""$(datadir)/pixmaps"\"  \
+               -DMODULESDIR=\"$(prefix)/lib/sofa/modules\" 
