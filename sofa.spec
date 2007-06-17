@@ -18,6 +18,7 @@ BuildRequires:	clutter-gtk-devel
 BuildRequires:	gstreamer-devel
 BuildRequires:	gstreamer-plugins-base-devel
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
