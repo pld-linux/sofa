@@ -1,5 +1,5 @@
-#
 Summary:	GNOME Media Center
+Summary(pl.UTF-8):	Centrum multimedialne GNOME
 Name:		sofa
 Version:	0.2.2
 Release:	1
@@ -26,16 +26,23 @@ of a home theater. Sofa is a media center which allows easy access to
 multimedia functionalities of a computer from a remote control in a
 unique software unlike current multimedia applications.
 
-The software integrates with Gnome to get user's settings and content.
+The software integrates with GNOME to get user's settings and content.
+
+%description -l pl.UTF-8
+Ten projekt przeznaczony jest dla użytkowników chcących używać systemu
+GNU/Linux jako serca kina domowego. Sofa to centrum multimedialne
+pozwalające na łatwy dostęp do funkcji multimedialnych komputera za
+pomocą pilota w unikalnym programie, innym niż aktualne aplikacje
+multimedialne.
+
+Ten program integruje się z GNOME w celu pobierania ustawień i treści
+użytkownika.
 
 %package devel
 Summary:	Header files for sofa library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki sofa
 Group:		Development/Libraries
-# if base package contains shared library for which these headers are
-#Requires:	%{name} = %{version}-%{release}
-# if -libs package contains shared library for which these headers are
-#Requires:	%{name}-libs = %{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for sofa library.
@@ -60,16 +67,11 @@ Statyczna biblioteka sofa.
 %patch0 -p1
 
 %build
-# if ac/am/* rebuilding is necessary, do it in this order and add
-# appropriate BuildRequires
-#%%{__intltoolize}
-#%%{__gettextize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 #%%{__autoheader}
 %{__automake}
-#cp -f /usr/share/automake/config.sub .
 %configure
 %{__make}
 
@@ -87,15 +89,16 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README THANKS
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/libsofa.so.0.0.0
-%dir %{_libdir}/sofa/modules/
-%attr(755,root,root) %{_libdir}/sofa/modules/*.so.*.*.*
-%attr(755,root,root) %{_libdir}/sofa/modules/*.so.*
-%attr(755,root,root) %{_libdir}/sofa/modules/*.so
-%attr(755,root,root) %{_libdir}/sofa/modules/*.la
+%dir %{_libdir}/sofa
+%dir %{_libdir}/sofa/modules
+%attr(755,root,root) %{_libdir}/sofa/modules/*.so*
+%{_libdir}/sofa/modules/*.la
 
 %files devel
-%{_libdir}/libsofa.so
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libsofa.so
 %{_libdir}/libsofa.la
 
 %files static
+%defattr(644,root,root,755)
 %{_libdir}/libsofa.a
